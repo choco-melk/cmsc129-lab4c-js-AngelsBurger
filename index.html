@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab4C - Javascript</title>
+</head>
+<body>
+    <!---
+        Check if Done :>
+
+        [/] Date Section
+            Current date and time will be shown.    
+
+        [] Register Student
+            User must input a name, age, and email. Additionally, they will choose their desired
+            course.
+
+            User input will be checked if it fits the restriction. If not, an error
+            will be displayed.  
+            Restrictions:
+                Name
+                    Name length must be greater than 5 characters, and must contain a whitespace.
+                    Name must be in a <first_name> <last_name> basis
+                
+                Age 
+                    Age must be between 18 to 99 exclusive.
+
+                Email
+                    Email must contain an @ symbol
+                    Email must be in a <email-name>@up.edu.ph format.
+                    
+
+            After validating the user input, it will be stored in a hashmap with a 
+            key called "studentNo" with the 2023<random_4-digit_number>.  
+
+        [] Find Student
+            User will input the "studentNo" of which, it will display the details
+            of that student. In the case that it fails to find a student, 
+            it will display "No Student Found"
+
+        [] Display Student
+            Display all students in an orderly manner based on its student number. 
+            Moreover, students are displayed in each row along with their details.   
+    --> 
+
+	<section id="date-section">
+        <h2>Show Date</h2>
+		<button id="datetime-display-button">Show Current Date</button>
+		<p id="date-display"></p>
+		<p id="time-display"></p>
+    </section>
+    <br>
+
+
+	<section id="registration-section">
+		<h2>Add Student</h2>
+		<form>
+			<label>Name: </label><br>
+			<input type="text" name="name" id="name" maxlength="100" required>
+            <label id="name-input-status"></label><br><br>
+
+            <label>Age: </label><br>
+			<input type="number" name="age" id="age" min=1 max=256 maxlength="3" required>
+            <label id="age-input-status"></label><br><br>
+            
+            <label>UP Mail: </label><br>
+			<input type="email" name="name" id="email" required>
+            <label id="email-input-status"></label><br><br>			
+
+            <label>Course: </label><br>
+			<select id="course">
+				<option>BA Food Appreciation</option>
+				<option>BS Tagabantay CompShop</option>
+			</select><br><br>
+
+			<input type="submit" value="Submit" id="register-button">
+		</form>
+		</ul>
+	</section>
+
+</body>
+<script src="scripts.js"></script>
+</html>
