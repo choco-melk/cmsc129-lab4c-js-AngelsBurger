@@ -42,12 +42,12 @@ document.getElementById("datetime-display-button").addEventListener("click", (e)
 const studentDatabase = {};   // Student Database
 const generateStudentNumber = () => {
     const FOUR_DIGITS = 10000;
-    const STUDNET_YEAR = 20230000;
+    const STUDENT_YEAR = 20230000;
     let num = Math.floor(Math.random() * FOUR_DIGITS);
-    if (num in studentDatabase) {
+    if ((STUDENT_YEAR + num) in studentDatabase) {
         num = (num + 1) % FOUR_DIGITS;
     }
-    return  STUDNET_YEAR + num;
+    return  STUDENT_YEAR + num;
 };
 
 document.getElementById("register-button").addEventListener("click", (e) => {
