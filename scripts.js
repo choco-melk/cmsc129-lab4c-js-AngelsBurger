@@ -41,11 +41,11 @@ document.getElementById("datetime-display-button").addEventListener("click", (e)
 
 const studentDatabase = {};   // Student Database
 const generateStudentNumber = () => {
-    const FOUR_DIGITS = 10000;
-    const STUDENT_YEAR = 20230000;
-    let num = Math.floor(Math.random() * FOUR_DIGITS);
+    const FIVE_DIGITS = 100000;
+    const STUDENT_YEAR = 202300000;
+    let num = Math.floor(Math.random() * FIVE_DIGITS);
     if ((STUDENT_YEAR + num) in studentDatabase) {
-        num = (num + 1) % FOUR_DIGITS;
+        num = (num + 1) % FIVE_DIGITS;
     }
     return  STUDENT_YEAR + num;
 };
@@ -59,34 +59,50 @@ document.getElementById("register-button").addEventListener("click", (e) => {
         emailStatusMessages: []
     };
     const nameStatus = document.getElementById("name-input-status");
+    const ageStatus = document.getElementById("age-input-status");
+    const emailStatus = document.getElementById("email-input-status");
+
     const NAME_REGEX = /^\S+\s\S+$/;
     const NAME_MIN_LENGTH = 5;
-    const ageStatus = document.getElementById("age-input-status");
     const MIN_AGE = 19;
     const MAX_AGE = 98;
-    const emailStatus = document.getElementById("email-input-status");
     const EMAIL_REGEX = /^[a-zA-Z0-9_\-\.]+@up\.edu\.ph$/;
-    const tempName = document.getElementById("name").value;
+
+    const tempName = document.getElementById("name").value.trim();
     const tempAge = parseInt(document.getElementById("age").value);
-    const tempEmail = document.getElementById("email").value;
+    const tempEmail = document.getElementById("email").value.trim();
     const tempCourse = document.getElementById("course").value;
 
     nameStatus.innerText = ageStatus.innerText = emailStatus.innerText = ""; 
+    nameStatus.style.color = ageStatus.style.color = emailStatus.style.color = ""; 
+
     if (!NAME_REGEX.test(tempName)) {
-        error.nameStatusMessages.push("Name must be a full name (Format: firstname lastname).");
+        error.nameStatusMessages.push("• Name must be a full name (Format: firstname lastname).");
         valid = false;
     }
-    if (tempName.length < 5) {
-        error.nameStatusMessages.push("Name must contain 5 or more characters.");
+    if (tempName.length < NAME_MIN_LENGTH) {
+        error.nameStatusMessages.push("• Name must contain at least 5 characters.");
         valid = false;
     }
     if (!(tempAge >= MIN_AGE && tempAge <= MAX_AGE)) {
-        error.ageStatusMessages.push("Age must be between 19 - 98.");
+        error.ageStatusMessages.push("• Age must be between 19 - 98.");
         valid = false;
     }
     if (!EMAIL_REGEX.test(tempEmail)) {
-        error.emailStatusMessages.push("Email can only have letters, numbers, and special characters (-_.), and it must contain address @up.edu.ph .");
+        error.emailStatusMessages.push("• Email can only have letters, numbers, and special characters (-_.), and it must contain address @up.edu.ph .");
         valid = false;
+    }
+
+    if (error.nameStatusMessages.length > 0) {
+        nameStatus.style.color = "red"; // Make text red
+    }
+
+    if (error.ageStatusMessages.length > 0) {
+        ageStatus.style.color = "red";
+    }
+
+    if (error.emailStatusMessages.length > 0) {
+        emailStatus.style.color = "red";
     }
     
     if(valid) {
@@ -100,7 +116,7 @@ document.getElementById("register-button").addEventListener("click", (e) => {
         };
         alert("Form submitted successfully!\n" + 
             "\nThe following student have been added:" + 
-            "\nStudent Number: " + studentTemp.studentNumber +
+            "\n    Student Number: " + studentTemp.studentNumber +
             "\n    Name: " + studentTemp.name + 
             "\n    Age: " + studentTemp.age + 
             "\n    Email: " + studentTemp.email + 
@@ -129,3 +145,57 @@ document.getElementById("register-button").addEventListener("click", (e) => {
 });
 
 
+document.getElementById("search-button").addEventListener("click", (e) => {
+    e.preventDefault();
+    let valid = false;
+    const searchNumber = parseInt(document.getElementById("number").value);
+    const displayStat = document.getElementById("student-number-status");
+
+    displayStat.innerText = "";
+    displayStat.style.color = "";
+
+    if (studentDatabase.hasOwnProperty(searchNumber)){
+        valid = true;
+    }
+
+    if (valid) {
+        let studentInfo;
+        
+        if (studentDatabase instanceof Map) {
+            studentInfo = studentDatabase.get(searchNumber);
+        } else {
+            studentInfo = studentDatabase[searchNumber];
+        }
+    
+        displayStat.innerText = `\nStudent found! Details: ${JSON.stringify(studentInfo)}`;
+        displayStat.style.color = "green";
+    } else {
+        displayStat.innerText = "\nNo student found.";
+        displayStat.style.color = "red";
+    }
+});
+
+document.getElementById("all-button").addEventListener("click", (e) => {
+    e.preventDefault();
+    let valid = false;
+    const displayStat = document.getElementById("all-student-status");
+
+    displayStat.innerText = "";
+    displayStat.style.color = "";
+
+    if (studentDatabase.length > 0){
+        valid = true;
+    }
+
+    if (valid) {
+        for (let key in studentDatabase) {
+            console.log(`Student Number: ${key}`, studentDatabase[key]);
+        }        
+    
+        displayStat.innerText = `\nDetails: ${JSON.stringify(studentInfo)}`;
+        displayStat.style.color = "green";
+    } else {
+        displayStat.innerText = "\nNo student found.";
+        displayStat.style.color = "red";
+    }
+});
