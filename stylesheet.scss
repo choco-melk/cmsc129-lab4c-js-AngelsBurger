@@ -17,6 +17,10 @@ h3 {
     font-size: 1.5rem;
 }
 
+button, input, select, #student-portal-section div, #main-navigation-bar li {
+    cursor: pointer;
+}
+
 button, input[type="submit"] {
     padding: 0.5em 1.5em;
     border: none;
@@ -25,6 +29,11 @@ button, input[type="submit"] {
     font-size: 1rem;
     font-weight: 600;
     color: white;
+    transition: all 0.1s ease-in;
+}
+
+button:hover, input[type="submit"]:hover {
+    filter: brightness(140%);
 }
 
 header {
@@ -63,6 +72,10 @@ header {
         padding: 0;
         li {
             margin: 0px 20px;
+        }
+        a {
+            color:#505050;
+            text-decoration: none;
         }
         .focused-page {
             color: #800C0C;
