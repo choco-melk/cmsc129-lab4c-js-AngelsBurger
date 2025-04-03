@@ -137,7 +137,6 @@ const generateStudentNumber = () => {
     }
     return  STUDENT_YEAR + num;
 };
-
 document.getElementById("register-button").addEventListener("click", (e) => {
     e.preventDefault();
     let valid = true;

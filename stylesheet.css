@@ -113,6 +113,10 @@ header ul {
 header ul li {
   margin: 0px 20px;
 }
+header ul a {
+  color: #505050;
+  text-decoration: none;
+}
 header ul .focused-page {
   color: #800C0C;
 }
@@ -160,8 +164,8 @@ header ul .focused-page {
   background-color: #F6F6F6;
   transition: all transform ease-in;
 }
-#student-portal-section div:rover {
-  transform: scale(1.02), translate(10px, 10px);
+#student-portal-section div:hover {
+  transform: scale(1.02), translate(-10px, -10px);
 }
 #student-portal-section h2 {
   width: 10ch;
@@ -189,6 +193,7 @@ header ul .focused-page {
   display: flex;
   justify-content: space-evenly;
   padding: 2rem;
+  border-radius: 50px;
 }
 #registration-section form {
   display: flex;
@@ -196,7 +201,6 @@ header ul .focused-page {
   width: 600px;
   padding: 2em 5em 3em;
   background-color: #F6F6F6;
-  border-radius: 15px;
 }
 #registration-section form #name-container, #registration-section form #age-container, #registration-section form #email-container, #registration-section form #course-container {
   display: flex;
@@ -227,7 +231,6 @@ header ul .focused-page {
 #registration-section #registration-notes-container {
   height: 250px;
   padding: 2rem;
-  border-radius: 15px;
   background-color: #F6F6F6;
 }
 #registration-section #registration-notes-container p {
@@ -253,6 +256,7 @@ header ul .focused-page {
   justify-content: center;
   padding: 1rem;
   margin-bottom: 60px;
+  border-radius: 15px;
 }
 #directory-section #find-student-container form {
   display: flex;
@@ -263,7 +267,6 @@ header ul .focused-page {
   margin-right: 50px;
   padding: 2rem;
   background-color: #F6F6F6;
-  border-radius: 10px;
 }
 #directory-section #find-student-container form label {
   font-weight: 600;
@@ -275,7 +278,6 @@ header ul .focused-page {
   width: 500px;
   padding: 1rem 2rem 2rem;
   background-color: #F6F6F6;
-  border-radius: 10px;
 }
 #directory-section #find-student-container #status-container h3, #directory-section #find-student-container #status-container p {
   text-align: center;
@@ -327,11 +329,10 @@ header ul .focused-page {
   justify-content: center;
   align-items: center;
   padding: 0.5em 1em;
-  border-top: solid 1px rgb(211, 203, 203);
-  border-left: solid 1px rgb(211, 203, 203);
+  border-left: solid 1px #505050;
 }
 #directory-section #display-all-student-container li:last-child {
-  border-right: solid 1px  rgb(211, 203, 203);
+  border-right: solid 1px #505050;
 }
 
 footer {

@@ -64,6 +64,10 @@ header {
         li {
             margin: 0px 20px;
         }
+        a {
+            color: #505050;
+            text-decoration: none;
+        }
         .focused-page {
             color: #800C0C;
         }
@@ -113,8 +117,8 @@ header {
         background-color: #F6F6F6;
         transition: all transform ease-in;
     }   
-    div:rover {
-        transform: scale(1.02), translate(10px, 10px);
+    div:hover {
+        transform: scale(1.02), translate(-10px, -10px);
     }
     h2 {       
         width: 10ch;
