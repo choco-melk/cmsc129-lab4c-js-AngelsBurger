@@ -306,6 +306,7 @@ header ul .focused-page {
   margin-bottom: 20px;
 }
 #directory-section #display-all-student-container #display-attributes {
+  display: none;
   font-weight: 600;
   background-color: #F6F6F6;
 }

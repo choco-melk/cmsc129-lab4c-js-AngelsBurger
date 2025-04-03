@@ -1,4 +1,6 @@
-/* Date Section */
+/*
+ * Date Section 
+ */
 document.getElementById("datetime-display-button").addEventListener("click", (e) => {
     e.preventDefault();
     const DAYS_OF_WEEK = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -20,66 +22,80 @@ document.getElementById("datetime-display-button").addEventListener("click", (e)
 });
 
 
+/**
+ * Mode Shifting Section 
+ */
+
+/* For Service Modes (Student Portal, Student Registration, and Student Directory */
+const studentPortal = document.getElementById("student-portal-section");
+const registrationSection = document.getElementById("registration-section");
+const directorySection = document.getElementById("directory-section");
+const backButtonContainer = document.getElementById("back-button-container");
+const titleDisplayService = document.getElementById("title-display-service");
+const dateContainer = document.getElementById("date-container");
+const registrationMode = document.getElementById("title-display-mode");
+
+/* For Resets */
+const dateDisplay = document.getElementById("date-display");
+const timeDisplay = document.getElementById("time-display");
+const nameInputStatus = document.getElementById("name-input-status");
+const ageInputStatus = document.getElementById("age-input-status");
+const emailInputStatus = document.getElementById("email-input-status");
+const registrationNameInput = document.getElementById("name");
+const registrationAgeInput = document.getElementById("age");
+const registrationEmailInput = document.getElementById("email");
+const studentSearechNumberInput = document.getElementById("number"); 
+const studentDisplayMessageStatus = document.getElementById("student-display-status-message");
+const studentDisplayStatus = document.getElementById("student-display-status");
+const allStudentDisplay = document.getElementById("all-students-display");
+const allStudentDisplayAttributes = document.getElementById("display-attributes");
+
+function resetStatuses() {
+    dateDisplay.innerText = timeDisplay.innerText = 
+    nameInputStatus.innerText = ageInputStatus.innerText = 
+    emailInputStatus.innerText = allStudentDisplay.innerText = "";
+    registrationAgeInput.value = registrationNameInput.value = 
+    registrationEmailInput.value = studentSearechNumberInput.value = ""; 
+    studentDisplayMessageStatus.style.color = "black";
+    studentDisplayMessageStatus.innerText = "None";
+    studentDisplayStatus.style.display = "none";
+    allStudentDisplayAttributes.style.display = "none";
+}
+
 document.getElementById("student-registration").addEventListener("click", (e) => {
     e.preventDefault();
-    const studentPortal = document.getElementById("student-portal-section");
-    const registrationSection = document.getElementById("registration-section");
-        
-    const dateContainer = document.getElementById("date-container");
-    const backButtonContainer = document.getElementById("back-button-container");
-    const titleDisplayService = document.getElementById("title-display-service");
-    const registrationMode = document.getElementById("title-display-mode");
-    const dateDisplay = document.getElementById("date-display");
-    const timeDisplay = document.getElementById("time-display");
-
     studentPortal.style.display = "none";
     registrationSection.style.display = "block";
     titleDisplayService.innerText = "STUDENT PORTAL";
     registrationMode.innerText = "STUDENT REGISTRATION";
     dateContainer.style.display = "none";
     backButtonContainer.style.display = "flex";
-    dateDisplay.innerText = timeDisplay.innerText = "";
+    resetStatuses();
 });
 
 document.getElementById("student-directory").addEventListener("click", (e) => {
     e.preventDefault();
-    const studentPortal = document.getElementById("student-portal-section");
-    const directory = document.getElementById("directory-section");
-    
-    const dateContainer = document.getElementById("date-container");
-    const backButtonContainer = document.getElementById("back-button-container");
-    const titleDisplayService = document.getElementById("title-display-service");
-    const registrationMode = document.getElementById("title-display-mode");
-    const dateDisplay = document.getElementById("date-display");
-    const timeDisplay = document.getElementById("time-display");
-
     studentPortal.style.display = "none";
-    directory.style.display = "block";
+    directorySection.style.display = "block";
     titleDisplayService.innerText = "STUDENT PORTAL";
     registrationMode.innerText = "STUDENT DIRECTORY";
     dateContainer.style.display = "none";
     backButtonContainer.style.display = "flex";
-    dateDisplay.innerText = timeDisplay.innerText = "";
+    resetStatuses();
 });
 
-
-document.getElementById("back-button").addEventListener("click", (e) => {
+function toBack(e) {
     e.preventDefault();
-    const studentPortal = document.getElementById("student-portal-section");
-    const registrationSection = document.getElementById("registration-section");
-    const directory = document.getElementById("directory-section");
-    const dateContainer = document.getElementById("date-container");
-    const backButtonContainer = document.getElementById("back-button-container");
-    const titleDisplayService = document.getElementById("title-display-service");
-    const registrationMode = document.getElementById("title-display-mode");
-
     studentPortal.style.display = "flex";
-    registrationSection.style.display = directory.style.display = "none";   
+    registrationSection.style.display = directorySection.style.display = "none";   
     titleDisplayService.innerText = "";
     registrationMode.innerText = "STUDENT PORTAL";
     dateContainer.style.display = "flex";
     backButtonContainer.style.display = "none";
-});
+    resetStatuses();
+}
+document.getElementById("back-button").addEventListener("click", toBack);
+document.getElementById("student-portal-link").addEventListener("click", toBack);
 
 
 /* 
@@ -268,8 +284,10 @@ document.getElementById("search-button").addEventListener("click", (e) => {
 document.getElementById("display-all-button").addEventListener("click", (e) => {
     e.preventDefault();
     const allStudentDisplay = document.getElementById("all-students-display");
-    const students = Object.keys(studentDatabase);
+    const studentAttributes = document.getElementById("display-attributes");
+    studentAttributes.style.display = "grid"; 
     allStudentDisplay.innerHTML = "";
+
     for (let i = 0; i < studentDatabase.length; i++) {
         const newRow = document.createElement("ul");
         const ATTRIBUTE_COUNT = 5;
