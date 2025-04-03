@@ -4,101 +4,186 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lab4C - Javascript</title>
+    <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
-    <!---
-        Check if Done :>
+    <header>
+        <figure>
+            <img src="images/upv-logo.png">
+            <figcaption>
+                UNIVERSITY OF THE PHILIPPINES VISAYAS<br>
+                <em>REGISTRAR</em>
+            </figcaption>
+        </figure>
+        <nav id="main-navigation-bar">
+            <ul id="main-navigation-bar-list">
+                <li id="home-link">HOME</li>
+                <li id="student-portal-link" class="focused-page">STUDENT PORTAL</li>
+            </ul>
+        </nav>
+    </header>
 
-        [/] Date Section
-            Current date and time will be shown.    
-
-        [] Register Student
-            User must input a name, age, and email. Additionally, they will choose their desired
-            course.
-
-            User input will be checked if it fits the restriction. If not, an error
-            will be displayed.  
-            Restrictions:
-                Name
-                    Name length must be greater than 5 characters, and must contain a whitespace.
-                    Name must be in a <first_name> <last_name> basis
-                
-                Age 
-                    Age must be between 18 to 99 exclusive.
-
-                Email
-                    Email must contain an @ symbol
-                    Email must be in a <email-name>@up.edu.ph format.
-                    
-
-            After validating the user input, it will be stored in a hashmap with a 
-            key called "studentNo" with the 2023<random_4-digit_number>.  
-
-        [] Find Student
-            User will input the "studentNo" of which, it will display the details
-            of that student. In the case that it fails to find a student, 
-            it will display "No Student Found"
-
-        [] Display Student
-            Display all students in an orderly manner based on its student number. 
-            Moreover, students are displayed in each row along with their details.   
-    --> 
-
-	<section id="date-section">
-        <h2>Show Date</h2>
-		<button id="datetime-display-button">Show Current Date</button>
-		<p id="date-display"></p>
-		<p id="time-display"></p>
-    </section>
-    <br>
-
-
-	<section id="registration-section">
-		<h2>Add Student</h2>
-		<form>
-			<label>Name: </label><br>
-			<input type="text" name="name" id="name" maxlength="100" required>
-            <label id="name-input-status"></label><br><br>
-
-            <label>Age: </label><br>
-			<input type="number" name="age" id="age" min=1 max=256 maxlength="3" required>
-            <label id="age-input-status"></label><br><br>
-            
-            <label>UP Mail: </label><br>
-			<input type="email" name="name" id="email" required>
-            <label id="email-input-status"></label><br><br>			
-
-            <label>Course: </label><br>
-			<select id="course">
-				<option>BA Food Appreciation</option>
-				<option>BS Tagabantay CompShop</option>
-			</select><br><br>
-
-			<input type="submit" value="Submit" id="register-button">
-		</form>
-		</ul>
+    <section id="title-section">   
+		<div id="title-content">
+			<h3 id="title-display-service"></h3>
+			<h1 id="title-display-mode">STUDENT PORTAL</h1>	
+		</div>	
+		<div id="date-container">
+			<button id="datetime-display-button">Show Date</button><br>
+			<p id="date-display"></p>
+			<p id="time-display"></p>
+		</div>
+		<div id="back-button-container">			
+			<button id="back-button">Back</button>
+		</div>	
 	</section>
-    <br>
 
+	<section id="student-portal-section" class="active">
+		<div id="student-registration">
+			<h2>Student Registration</h2>
+			<img src="images/student-add-icon.png">
+		</div>
+
+		<div id="student-directory">
+			<h2>Student Directory</h2>
+			<img src="images/student-search-icon.png">
+		</div>
+	</section>
+	
+	<section id="registration-section">
+        <h2>REGISTRATION FORM</h2>
+        <div id="registration-form-container">
+            <form>
+                <div id="name-container">
+                    <label>Name: </label>
+                    <input type="text" name="name" id="name" required>
+                </div>
+                <div id="name-input-status"></div>
+
+                <div id="age-container">
+                    <label>Age: </label>
+                    <input type="number" name="age" id="age" min="19" max="98" required><br>
+                </div>        
+                <div id="age-input-status"></div>
+                
+                <div id="email-container">
+                    <label>UP Mail: </label>
+                    <input type="email" name="name" id="email" required><br>
+                </div>
+                <div id="email-input-status"></div>			
+                
+                <div id="course-container">
+                    <label>Course: </label>
+                    <select id="course">
+                        <option>BA Food Appreciation</option>
+                        <option>BA Applied Poetry of the Future</option>
+                        <option>BS Computer Repair Shop</option>
+                        <option>BS Video Gaming</option>
+                        <option>BS Installing and Downloading</option>
+                    </select><br><br>
+                </div>
+                <div id="submit-button-container">
+                    <input type="submit" value="Submit" id="register-button">
+                </div>        
+            </form>
+            <div id="registration-notes-container">
+                <p>Please input the input fields with the following format:</p>
+                <ul>
+                    <li>“Name” must be in FirstName LastName format</li>
+                    <li>“Age” must be between 19 to 98</li>
+                    <li>“Email” must contain the address @up.edu.ph</li>
+                </ul>
+                <p>Then select a "Course" and click submit!</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="directory-section">
+        <h2>FIND STUDENT</h2>
+        <div id="find-student-container">
+            <form>
+                <label>Search Student Number:</label>
+                <input type="number" name="number" id="number" min=202300000 required>
+                <input type="submit" value="Search" id="search-button">
+            </form>
+            <div id="status-container">
+                <h3>Status:</h3>
+                <p id="student-display-status-message">None</p>
+                <div id="student-display-status">
+                    <ul id="student-attributes">
+                        <li>Student Number: </li>                
+                        <li>Name: </li>
+                        <li>Age: </li>
+                        <li>UP Mail: </li>
+                        <li>Course: </li>
+                    </ul>
+                    <ul id="student-values">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <h2>DISPLAY ALL STUDENTS</h2>
+        <div id="display-all-student-container">
+            <div id="display-all-button-container">
+                <button id="display-all-button">Show all Students</button>
+            </div>
+            <ul id="display-attributes">
+                <li>Student Number</li>
+                <li>Name</li>
+                <li>Age</li>
+                <li>Email</li>
+                <li>Course</li>
+            </ul>
+            <div id="all-students-display">
+                
+            </div>
+        </div>
+
+    </section>
+
+	<footer></footer>
+<!--
     <section id="find-student-section">
         <h2>Search Student</h2>
         <form>
             <label>Search Student Number:</label>
-            <input type="number" name="number" id="number" min=202300001 required>
+            <input type="number" name="number" id="number" min=202300000 required>
             <input type="submit" value="Search:" id="search-button">
-            <label id="student-number-status"></label>
+            <p id="student-display-status-message"></p>
+            <label id="student-display-status">
+                <div id="student-attributes">
+                    <div><span class="bold">Student Number</span></div>                
+                    <div><span class="bold">Name</span></div>
+                    <div><span class="bold">Age</span></div>
+                    <div><span class="bold">UP Mail</span></div>
+                    <div><span class="bold">Course</span></div>
+                </div>
+                <div id="student-values">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </label>
+            </label>
         </form>
     </section>
-    <br>
 
-    <section id="find-all-student-section">
-        <h2>Display All Students</h2>
-        <form>
-            <input type="submit" value="Display all Students" id="all-button">
-            <label id="all-student-status"></label>
-        </form>
-    </section>
 
+    <section id="find-section">
+		<h2>Display All Student</h2>
+        <button id="display-all-button">Display All Students</button>
+        <div id="all-students-display">
+            
+        </div>
+    </section> -->
 </body>
 <script src="scripts.js"></script>
 </html>

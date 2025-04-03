@@ -15,8 +15,70 @@ document.getElementById("datetime-display-button").addEventListener("click", (e)
         minute: 'numeric',
         hour12: true   
     };
-    document.getElementById("date-display").innerText =  "Today is " + Intl.DateTimeFormat("en-US", dateOptions).format(date) + " " + DAYS_OF_WEEK[date.getDay()];
+    document.getElementById("date-display").innerText =  "Today is " + Intl.DateTimeFormat("en-US", dateOptions).format(date) + ", " + DAYS_OF_WEEK[date.getDay()];
     document.getElementById("time-display").innerText =  "The current time is " + Intl.DateTimeFormat("en-US", timeOptions).format(date);
+});
+
+
+document.getElementById("student-registration").addEventListener("click", (e) => {
+    e.preventDefault();
+    const studentPortal = document.getElementById("student-portal-section");
+    const registrationSection = document.getElementById("registration-section");
+        
+    const dateContainer = document.getElementById("date-container");
+    const backButtonContainer = document.getElementById("back-button-container");
+    const titleDisplayService = document.getElementById("title-display-service");
+    const registrationMode = document.getElementById("title-display-mode");
+    const dateDisplay = document.getElementById("date-display");
+    const timeDisplay = document.getElementById("time-display");
+
+    studentPortal.style.display = "none";
+    registrationSection.style.display = "block";
+    titleDisplayService.innerText = "STUDENT PORTAL";
+    registrationMode.innerText = "STUDENT REGISTRATION";
+    dateContainer.style.display = "none";
+    backButtonContainer.style.display = "flex";
+    dateDisplay.innerText = timeDisplay.innerText = "";
+});
+
+document.getElementById("student-directory").addEventListener("click", (e) => {
+    e.preventDefault();
+    const studentPortal = document.getElementById("student-portal-section");
+    const directory = document.getElementById("directory-section");
+    
+    const dateContainer = document.getElementById("date-container");
+    const backButtonContainer = document.getElementById("back-button-container");
+    const titleDisplayService = document.getElementById("title-display-service");
+    const registrationMode = document.getElementById("title-display-mode");
+    const dateDisplay = document.getElementById("date-display");
+    const timeDisplay = document.getElementById("time-display");
+
+    studentPortal.style.display = "none";
+    directory.style.display = "block";
+    titleDisplayService.innerText = "STUDENT PORTAL";
+    registrationMode.innerText = "STUDENT DIRECTORY";
+    dateContainer.style.display = "none";
+    backButtonContainer.style.display = "flex";
+    dateDisplay.innerText = timeDisplay.innerText = "";
+});
+
+
+document.getElementById("back-button").addEventListener("click", (e) => {
+    e.preventDefault();
+    const studentPortal = document.getElementById("student-portal-section");
+    const registrationSection = document.getElementById("registration-section");
+    const directory = document.getElementById("directory-section");
+    const dateContainer = document.getElementById("date-container");
+    const backButtonContainer = document.getElementById("back-button-container");
+    const titleDisplayService = document.getElementById("title-display-service");
+    const registrationMode = document.getElementById("title-display-mode");
+
+    studentPortal.style.display = "flex";
+    registrationSection.style.display = directory.style.display = "none";   
+    titleDisplayService.innerText = "";
+    registrationMode.innerText = "STUDENT PORTAL";
+    dateContainer.style.display = "flex";
+    backButtonContainer.style.display = "none";
 });
 
 
@@ -39,7 +101,17 @@ document.getElementById("datetime-display-button").addEventListener("click", (e)
  *  credits to CHATGPT and Sir Hismana's slides for REGEX :>
  */
 
-const studentDatabase = {};   // Student Database
+const studentDatabase = [];
+studentDatabase[0] = {
+        name: "Jave Hulleza",
+        age: 20,
+        email: "cshulleza@up.edu.ph",
+        course: "BS in Computer Science",
+        studentNumber: 202314625
+};   // Student Database
+
+console.log(studentDatabase);
+
 const generateStudentNumber = () => {
     const FIVE_DIGITS = 100000;
     const STUDENT_YEAR = 202300000;
@@ -121,7 +193,7 @@ document.getElementById("register-button").addEventListener("click", (e) => {
             "\n    Age: " + studentTemp.age + 
             "\n    Email: " + studentTemp.email + 
             "\n    Course: " + studentTemp.course); 
-        studentDatabase[studentNo] = studentTemp;
+        studentDatabase[studentDatabase.length] = studentTemp;
         document.getElementById("name").value = "";
         document.getElementById("age").value = "";
         document.getElementById("email").value = "";
@@ -142,60 +214,82 @@ document.getElementById("register-button").addEventListener("click", (e) => {
             emailStatus.append(newTag);
         }
     }
+    for (let i = 0; i < studentDatabase.length; i++) {
+        console.log(studentDatabase[i]);
+    }
 });
 
 
 document.getElementById("search-button").addEventListener("click", (e) => {
     e.preventDefault();
-    let valid = false;
-    const searchNumber = parseInt(document.getElementById("number").value);
-    const displayStat = document.getElementById("student-number-status");
+    const target = parseInt(document.getElementById("number").value);
+    const studentDisplay = document.getElementById("student-display-status");
+    const valueDisplays = document.getElementById("student-values").getElementsByTagName("li");
+    const displayStat = document.getElementById("student-display-status-message");
 
     displayStat.innerText = "";
     displayStat.style.color = "";
 
-    if (studentDatabase.hasOwnProperty(searchNumber)){
-        valid = true;
-    }
-
-    if (valid) {
-        let studentInfo;
-        
-        if (studentDatabase instanceof Map) {
-            studentInfo = studentDatabase.get(searchNumber);
-        } else {
-            studentInfo = studentDatabase[searchNumber];
+    let index = -1;
+    for (let i = 0; i < studentDatabase.length; i++) {
+        if (studentDatabase[i].studentNumber == target) {
+            index = i;
+            break;
         }
-    
-        displayStat.innerText = `\nStudent found! Details: ${JSON.stringify(studentInfo)}`;
+    }
+
+    if (index != -1) {
+        displayStat.innerText = "Student Found! ";
         displayStat.style.color = "green";
-    } else {
-        displayStat.innerText = "\nNo student found.";
-        displayStat.style.color = "red";
-    }
-});
-
-document.getElementById("all-button").addEventListener("click", (e) => {
-    e.preventDefault();
-    let valid = false;
-    const displayStat = document.getElementById("all-student-status");
-
-    displayStat.innerText = "";
-    displayStat.style.color = "";
-
-    if (studentDatabase.length > 0){
-        valid = true;
-    }
-
-    if (valid) {
-        for (let key in studentDatabase) {
-            console.log(`Student Number: ${key}`, studentDatabase[key]);
+        studentDisplay.style.display = "flex";
+        let values = [
+            studentDatabase[index].studentNumber,
+            studentDatabase[index].name,
+            studentDatabase[index].age,
+            studentDatabase[index].email,
+            studentDatabase[index].course
+        ];
+        let i = 0;
+        for (let element of valueDisplays) {
+            element.innerText = values[i];
+            i++;
         }        
-    
-        displayStat.innerText = `\nDetails: ${JSON.stringify(studentInfo)}`;
-        displayStat.style.color = "green";
-    } else {
-        displayStat.innerText = "\nNo student found.";
+    } else {            
+        displayStat.innerText = "No Student Found.";
         displayStat.style.color = "red";
+        studentDisplay.style.display = "none";
+        for (let element in valueDisplays) {
+            element.innerText = "";
+        }
     }
 });
+
+
+document.getElementById("display-all-button").addEventListener("click", (e) => {
+    e.preventDefault();
+    const allStudentDisplay = document.getElementById("all-students-display");
+    const students = Object.keys(studentDatabase);
+    allStudentDisplay.innerHTML = "";
+    for (let i = 0; i < studentDatabase.length; i++) {
+        const newRow = document.createElement("ul");
+        const ATTRIBUTE_COUNT = 5;
+        let values = [
+            studentDatabase[i].studentNumber,
+            studentDatabase[i].name,
+            studentDatabase[i].age,
+            studentDatabase[i].email,
+            studentDatabase[i].course
+        ];
+        for (let i = 0; i < ATTRIBUTE_COUNT; i++) {
+            element = document.createElement("li");
+            element.innerText = values[i];
+            newRow.append(element);
+        }    
+        allStudentDisplay.append(newRow);
+    }
+});
+
+
+
+
+

@@ -1,0 +1,339 @@
+@import url("https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margin */
+* {
+  margin: 0;
+}
+
+body {
+  /* 3. Add accessible line-height */
+  line-height: 1.5;
+  /* 4. Improve text rendering */
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 5. Improve media defaults */
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 6. Inherit fonts for form controls */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* 7. Avoid text overflows */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* 8. Improve line wrapping */
+p {
+  text-wrap: pretty;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+/* 9. Create a root stacking context */
+#root, #__next {
+  isolation: isolate;
+}
+
+body {
+  font-family: "Albert Sans", serif;
+  color: #505050;
+}
+
+h1 {
+  font-size: 3.5rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+button, input[type=submit] {
+  padding: 0.5em 1.5em;
+  border: none;
+  border-radius: 10px;
+  background-color: #800C0C;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em 4em;
+  font-weight: 600;
+}
+header figure {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+header img[src="images/upv-logo.png"] {
+  width: 90px;
+  height: 90px;
+  margin-right: 15px;
+}
+header figcaption {
+  font-size: 1.1rem;
+}
+header figcaption em {
+  font-style: normal;
+  font-size: 1.9rem;
+  font-weight: 800;
+}
+header nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header ul {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+}
+header ul li {
+  margin: 0px 20px;
+}
+header ul .focused-page {
+  color: #800C0C;
+}
+
+#title-section {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 4rem;
+  background-color: #F6F6F6;
+  color: #800C0C;
+}
+#title-section #date-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+  width: 35ch;
+  color: #800C0C;
+}
+#title-section #date-container p {
+  font-weight: 500;
+}
+#title-section #date-container button {
+  margin-left: 7px;
+}
+#title-section #back-button-container {
+  display: none;
+  justify-content: right;
+  align-items: center;
+}
+
+#student-portal-section {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 4rem;
+}
+#student-portal-section div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 450px;
+  height: 450px;
+  border-radius: 50%;
+  background-color: #F6F6F6;
+  transition: all transform ease-in;
+}
+#student-portal-section div:rover {
+  transform: scale(1.02), translate(10px, 10px);
+}
+#student-portal-section h2 {
+  width: 10ch;
+  text-align: center;
+  font-size: 2.5rem;
+  line-height: 2.7rem;
+  font-weight: 700;
+}
+#student-portal-section img {
+  width: 180px;
+  height: 180px;
+  margin: 20px;
+}
+
+#registration-section {
+  display: none;
+  justify-content: space-evenly;
+  padding: 4rem;
+}
+#registration-section h2 {
+  text-align: center;
+  color: #800C0C;
+}
+#registration-section #registration-form-container {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 2rem;
+}
+#registration-section form {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  padding: 2em 5em 3em;
+  background-color: #F6F6F6;
+}
+#registration-section form #name-container, #registration-section form #age-container, #registration-section form #email-container, #registration-section form #course-container {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+#registration-section form #name-container input, #registration-section form #name-container select, #registration-section form #age-container input, #registration-section form #age-container select, #registration-section form #email-container input, #registration-section form #email-container select, #registration-section form #course-container input, #registration-section form #course-container select {
+  width: 40ch;
+}
+#registration-section form #name-input-status, #registration-section form #age-input-status, #registration-section form #email-input-status {
+  width: 300px;
+  margin-left: 100px;
+  font-size: 0.8rem;
+}
+#registration-section form #submit-button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+#registration-section form label {
+  display: flex;
+  justify-content: right;
+  width: 100px;
+  margin-right: 20px;
+  font-weight: 600;
+}
+#registration-section #registration-notes-container {
+  height: 250px;
+  padding: 2rem;
+  background-color: #F6F6F6;
+}
+#registration-section #registration-notes-container p {
+  font-weight: 600;
+}
+#registration-section #registration-notes-container ul {
+  font-weight: 400;
+}
+#registration-section #registration-notes-container ul li {
+  margin: 10px 0px;
+}
+
+#directory-section {
+  display: none;
+  padding: 4rem;
+}
+#directory-section h2 {
+  text-align: center;
+  color: #800C0C;
+}
+#directory-section #find-student-container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  margin-bottom: 60px;
+}
+#directory-section #find-student-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  height: 200px;
+  margin-right: 50px;
+  padding: 2rem;
+  background-color: #F6F6F6;
+}
+#directory-section #find-student-container form label {
+  font-weight: 600;
+}
+#directory-section #find-student-container form input[type=number] {
+  margin: 5px 0px;
+}
+#directory-section #find-student-container #status-container {
+  width: 500px;
+  padding: 1rem 2rem 2rem;
+  background-color: #F6F6F6;
+}
+#directory-section #find-student-container #status-container h3, #directory-section #find-student-container #status-container p {
+  text-align: center;
+}
+#directory-section #find-student-container #status-container ul {
+  list-style: none;
+  padding: 0;
+}
+#directory-section #find-student-container #status-container #student-attributes {
+  font-weight: 600;
+}
+#directory-section #find-student-container #status-container #student-attributes li {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+#directory-section #find-student-container #status-container #student-display-status {
+  display: none;
+  justify-content: center;
+}
+#directory-section #find-student-container #status-container #student-display-status ul {
+  margin: 10px;
+}
+#directory-section #find-student-container #status-container #student-display-status #student-values li {
+  display: flex;
+  justify-content: left;
+}
+#directory-section #display-all-student-container #display-all-button-container {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  margin-bottom: 20px;
+}
+#directory-section #display-all-student-container #display-attributes {
+  font-weight: 600;
+  background-color: #F6F6F6;
+}
+#directory-section #display-all-student-container ul {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr 2fr 3fr;
+  padding: 0;
+  list-style: none;
+}
+#directory-section #display-all-student-container #all-students-display ul:nth-child(2n) {
+  background-color: #F6F6F6;
+}
+#directory-section #display-all-student-container li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em 1em;
+  border-left: solid 1px #505050;
+}
+#directory-section #display-all-student-container li:last-child {
+  border-right: solid 1px #505050;
+}
+
+footer {
+  height: 100px;
+  margin-top: 50px;
+  background-color: #505464;
+  color: white;
+}
+
+/*# sourceMappingURL=stylesheet.css.map */
